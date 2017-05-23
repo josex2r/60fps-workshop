@@ -8,6 +8,15 @@ html
     script(src="/assets/js/jquery.min.js")
     script(src="/assets/js/bootstrap.min.js")
     script(src="/assets/js/ie10-viewport-workaround.js")
+    if environment == "production"
+      //- github pages (production) need the base url to be the
+      //- path of the project repo
+      base(href="#{base_path}")
+    else
+      //- alternatively, you can use the node env variable directly
+      //- as the base url to compile for a custom url (ex. another
+      //- user's fork's gh-pages branch)
+      base(href="/")
   body
     !=partial('/_shared/nav')
     .container
