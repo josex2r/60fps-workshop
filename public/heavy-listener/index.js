@@ -1,73 +1,52 @@
-let $btnRunTask;
 let $progress;
-let $table;
+let $frame;
+let $frames;
 let progressTimer;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
   $progress = $('#progress');
-  $table = $('#table');
+  $frame = $('#frame');
 
-  bindRunTask();
-  startProgressAnimation(5000, startProgressAnimation);
+  // Create more frames
+  const dom = $frame.html();
+  for (let i = 0; i < 50; i++) {
+    $frame.append(dom);
+  }
+
+  $frames = $frame.find('div');
+
+  $frame.on('scroll', (e) => {
+    const index = getIndex();
+    
+    colorize(index);
+
+    const percent = getPercent();
+
+    resize(percent);
+  });
 });
 
-function bindRunTask() {
-  $btnRunTask.click(() => {
-    getCSV();
-  });
+function resize(percent) {
+  $progress.width(`${percent}%`);
 }
 
-function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
-
-  $progress.animate({
-      width: '100%'
-    }, delay, 'linear', () => callback(delay, callback));
+function colorize(index) {
+  let color = $($frames.get(index)).css('background-color');
+  
+  $progress.css('background-image', 'none');
+  $progress.css('background-color', color);
 }
 
-function getCSV() {
-  $.ajax({
-    type: 'GET',
-    url: '/assets/example.csv',
-    dataType: 'text',
-    success: processData
-  });
+function getIndex() {
+  const frameWidth = $frame[0].offsetWidth;
+  const offset = $frame[0].scrollLeft;
+  
+  return Math.trunc((offset - frameWidth / 2) / frameWidth);
 }
 
-function processData(allText) {
-    var allTextLines = allText.split(/\r/);
-    var headers = allTextLines[0].split(',');
-    var lines = [];
-
-    for (var i=1; i<allTextLines.length; i++) {
-        var data = allTextLines[i].split(',');
-        if (data.length == headers.length) {
-
-            var tarr = [];
-            for (var j=0; j<headers.length; j++) {
-                tarr.push(/* headers[j]+":"+ */ data[j]);
-            }
-            lines.push(tarr);
-        }
-    }
-    renderData(lines);
-}
-
-function renderData(lines) {
-  lines.forEach(items => {
-    $table.append(renderRow(items));
-  });
-}
-
-function renderRow(items) {
-  const $tr = $('<tr>');
-
-  items.forEach(item => {
-    const $td = $(`<td>${item}</td>`);
-
-    $tr.append($td);
-  });
-
-  return $tr;
+function getPercent() {
+  const frameWidth = $frame[0].offsetWidth;
+  const offset = $frame[0].scrollLeft;
+  
+  return offset * 100 / ($frame[0].scrollWidth - frameWidth);
 }

@@ -1,62 +1,50 @@
-let $btnRunTask;
 let $progress;
-let $table;
+let $frame;
+let $frames;
 let progressTimer;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
   $progress = $('#progress');
-  $table = $('#table');
+  $frame = $('#frame');
 
-  bindRunTask();
-  startProgressAnimation(5000, startProgressAnimation);
+  // Create more frames
+  const dom = $frame.html();
+  for (let i = 0; i < 50; i++) {
+    $frame.append(dom);
+  }
+
+  $frames = $frame.find('div');
+
+  $frame.on('scroll', (e) => {
+    window.requestAnimationFrame(render);
+  });
 });
 
-function bindRunTask() {
-  $btnRunTask.click(() => {
-    getCSV();
-  });
+function render() {
+  const bounds = getBounds();
+  const index = bounds.index;
+  const percent = bounds.percent;
+
+  colorize(index);
+  resize(percent);
 }
 
-function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
-
-  $progress.animate({
-      width: '100%'
-    }, delay, 'linear', () => callback(delay, callback));
+function resize(percent) {
+  $progress[0].style.width = `${percent}%`;
 }
 
-function getCSV() {
-  $.ajax({
-    type: 'GET',
-    url: '/assets/example.csv',
-    dataType: 'text',
-    success: processData
-  });
+function colorize(index) {
+  let color = $frames[index].style.backgroundColor;
+  
+  $progress[0].style.background =  color;
 }
 
-function processData(text) {
-  const lines = text.split(/\r/).map(line => line.split(','));
-
-  renderData(lines);
-}
-
-function renderData(lines) {
-  renderRow(0, lines);
-}
-
-function renderRow(index, rows) {
-  const row = rows[index];
-
-  window.requestAnimationFrame(() => {
-    const content = row.reduce((acc, column) => {
-      return acc +`<td>${column}</td>`;
-    }, '');
-
-    $table.append(`<tr>${content}</tr>`);
-
-    if (index++ < rows.length -1) {
-      renderRow(index, rows);
-    }
-  });
+function getBounds() {
+  const frameWidth = $frame[0].offsetWidth;
+  const offset = $frame[0].scrollLeft;
+  
+  return {
+    index: Math.trunc((offset - frameWidth / 2) / frameWidth),
+    percent: offset * 100 / ($frame[0].scrollWidth - frameWidth)
+  };
 }
