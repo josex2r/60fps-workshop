@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "harp server",
-    "build": "NODE_ENV=production harp compile"
+    "build": "NODE_ENV=production harp compile",
+    "prepublish": "npm run build && git checkout gh-pages && cp -rv www/* . && rm -rf www"
   },
   "repository": {
     "type": "git",
