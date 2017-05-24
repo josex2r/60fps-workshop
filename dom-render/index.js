@@ -29,7 +29,7 @@ function startProgressAnimation(delay, callback) {
 function getCSV() {
   $.ajax({
     type: 'GET',
-    url: '/assets/example.csv',
+    url: 'https://josex2r.github.io/60fps-workshop/assets/example.csv',
     dataType: 'text',
     success: processData
   });
