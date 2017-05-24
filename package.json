@@ -1,0 +1,31 @@
+{
+  "name": "60fps-workshop",
+  "version": "1.0.0",
+  "description": "60fps workshop",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "harp server",
+    "build": "NODE_ENV=production harp compile"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josex2r/60fps-workshop.git"
+  },
+  "keywords": [
+    "workshop",
+    "60",
+    "fps"
+  ],
+  "contributors": [{
+    "name": "josex2r",
+    "email": "codex2r@gmail.com"
+  }, {
+    "name": "adrigzr"
+  }],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josex2r/60fps-workshop/issues"
+  },
+  "homepage": "https://github.com/josex2r/60fps-workshop#readme"
+}

@@ -1,6 +1,6 @@
 {
   "globals": {
     "title": "60fps Workshop",
-    "base_path": "60fps-workshop"
+    "base_path": "/60fps-workshop/"
   }
 }
