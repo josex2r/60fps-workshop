@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "harp server",
+    "server": "NODE_ENV=' ' harp server",
     "build": "NODE_ENV=https://josex2r.github.io/60fps-workshop/ harp compile",
     "prepublish": "npm run build && git checkout gh-pages && cp -rv www/* . && rm -rf www"
   },

@@ -1,16 +1,9 @@
+a.btn.btn-primary.pull-right(href="#{environment}/heavy-listener/raf") Ir a la solución
+
 .page-header
-  h1 Resizing may cause reflows
+  h1 Determinados accesos al DOM pueden causar un reflow
   a(href="https://gist.github.com/paulirish/5d52fb081b3570c81e3a") What forces layout / reflow?
 
-.row
-  .progress
-    #progress.progress-bar
-      span.sr-only
-
-#frame.row
-  .col-xs-12(style="background-color:#EF9A9A")
-  .col-xs-12(style="background-color:#FFEB3B")
-  .col-xs-12(style="background-color:#2196F3")
-  .col-xs-12(style="background-color:#4CAF50")
+!=partial('../_shared/heavy-listener', { img: 'heavy-listener-before.png' })
 
 script(src="#{environment}/heavy-listener/index.js")
