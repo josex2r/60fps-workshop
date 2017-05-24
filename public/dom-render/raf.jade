@@ -1,0 +1,12 @@
+a.btn.btn-primary.pull-right(href="#{environment}/dom-render") Volver al ejemplo
+
+.page-header
+  h1 Heavy DOM operation (solución)
+
+.row
+  p En este ejemplo se puede observar cómo al renderizar una gran cantidad de elementos uno a uno en el DOM ya <b>no bloqueamos el hilo principal</b> del navegador.
+  p A medida que solicitemos frames al navegador se irán pintando los elementos recursivamente hasta mostrarlos todos.
+
+!=partial('../_shared/dom-render', { img: 'dom-render-after.png' })
+
+script(src="#{environment}/dom-render/raf.js")

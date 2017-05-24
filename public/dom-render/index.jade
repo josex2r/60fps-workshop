@@ -1,13 +1,13 @@
+a.btn.btn-primary.pull-right(href="#{environment}/dom-render/raf") Ir a la solución
+
 .page-header
-  h1 Heavy DOM operation (read CSV and render into table)
-  button#btnRunTask.btn.btn-default Make some heavy task
+  h1 Heavy DOM operation
 
 .row
-  .progress
-    #progress.progress-bar
-      span.sr-only
+  p En este ejemplo se puede observar cómo al renderizar una gran cantidad de elementos en el DOM <b>bloqueamos el hilo principal</b> del navegador.
+  p Para ello se leerá una csv con miles de datos que renderizaremos en una tabla.
+  p Una posible solución sería renderizar <b>1..n</b> elementos  a la vez, en vez del total de ellos. Para solucionarlo se hará uso de la función nativa <b>requestAnimationFrame</b>.
 
-.row
-  table#table.table
+!=partial('../_shared/dom-render', { img: 'dom-render-before.png' })
 
 script(src="#{environment}/dom-render/index.js")
