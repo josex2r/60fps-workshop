@@ -44,8 +44,7 @@ function computeCells(items) {
     const viewportItems = items.filter((index, element) => {
       const rect = element.getBoundingClientRect();
 
-      return
-        rect.top <= outerHeight + 300 &&
+      return rect.top <= outerHeight + 300 &&
         rect.bottom >= -1 * 300;
     });
 
