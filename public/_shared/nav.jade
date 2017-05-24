@@ -6,11 +6,11 @@ nav.navbar.navbar-inverse.navbar-fixed-top
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      a.navbar-brand(href="/") #{ title }
+      a.navbar-brand(href="#{environment}") #{ title }
     #navbar.navbar-collapse.collapse(aria-expanded="false", style="height: 1px;")
       ul.nav.navbar-nav
         li
-          a(href="#{environment}/") Home
+          a(href="#{environment}") Home
         li
           a(href="#{environment}/heavy-listener") Heavy listener
         li
