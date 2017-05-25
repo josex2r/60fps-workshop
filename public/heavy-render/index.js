@@ -32,14 +32,14 @@ function renderData(lines) {
 }
 
 function startTimer() {
-  const items = $('td');
+  const items = $('tr');
 
   setInterval(computeCells(items));
 }
 
 function computeCells(items) {
   return () => {
-    items.each((idx, element) => {
+    items.children().each((idx, element) => {
       element.textContent = Math.random();
     });
   };
