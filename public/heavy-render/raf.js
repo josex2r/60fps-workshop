@@ -1,38 +1,24 @@
-let $btnRunTask;
-let $progress;
-let $table;
+let table;
 let progressTimer;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
-  $progress = $('#progress');
-  $table = $('#table');
+  table = document.querySelector('#table tbody');
 
   renderData();
 
   startTimer();
-
-  startProgressAnimation(5000, startProgressAnimation);
 });
-
-function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
-
-  $progress.animate({
-      width: '100%'
-    }, delay, 'linear', () => callback(delay, callback));
-}
 
 function renderData(lines) {
   new Array(1000).fill(0).map(() =>
     new Array(5).fill(0).map(Math.random)
   ).forEach(items => {
-    $table.append(renderRow(items));
+    table.appendChild(renderRow(items));
   });
 }
 
 function startTimer() {
-  const items = $('tr');
+  const items = document.querySelectorAll('tr');
 
   requestAnimationFrame(computeCells(items));
 }
@@ -41,7 +27,7 @@ const outerHeight = window.outerHeight;
 
 function computeCells(items) {
   return () => {
-    const viewportItems = items.filter((index, element) => {
+    const viewportItems = $(items).filter((index, element) => {
       const rect = element.getBoundingClientRect();
 
       return rect.top <= outerHeight + 300 &&
@@ -57,13 +43,15 @@ function computeCells(items) {
 }
 
 function renderRow(items) {
-  const $tr = $('<tr>');
+  const tr = document.createElement('tr');
 
   items.forEach(item => {
-    const $td = $(`<td>${item}</td>`);
+    const td = document.createElement('td');
 
-    $tr.append($td);
+    td.textContent = item;
+
+    tr.appendChild(td);
   });
 
-  return $tr;
+  return tr;
 }

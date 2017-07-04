@@ -1,15 +1,10 @@
-let $btnRunTask;
-let $progress;
-let $table;
-let progressTimer;
+let table;
 const lines = [];
 let currentLine = 0;
 let loading = false;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
-  $progress = $('#progress');
-  $table = $('#table');
+  table = document.querySelector('#table tbody');
 
   getCSV();
 
@@ -49,9 +44,9 @@ function processData(allText) {
 }
 
 function checkScroll() {
-  const $wrapper = document.body;
+  const wrapper = document.body;
 
-  if (currentLine < lines.length && document.body.scrollHeight - window.outerHeight - 600 <= $wrapper.scrollTop) {
+  if (currentLine < lines.length && document.body.scrollHeight - window.outerHeight - 600 <= wrapper.scrollTop) {
     loading = true;
     renderLine(lines[currentLine]);
     currentLine++;
@@ -62,33 +57,33 @@ function checkScroll() {
 }
 
 function renderLine(items) {
-  $table.append(renderRow(items));
+  table.appendChild(renderRow(items));
 }
 
 function renderRow(items) {
-  const $tr = $('<tr>');
+  const tr = document.createElement('tr');
 
   items.forEach(item => {
-    const $td = $('<td>');
+    const td = document.createElement('td');
 
     item.split('').forEach((char) => {
-      let $span = $('<span>');
+      let span = document.createElement('span');
 
-      $td.append($span);
+      td.appendChild(span);
 
       new Array(10).fill(0).forEach(() => {
-        const $tmp = $('<span>');
+        const tmp = document.createElement('span');
 
-        $span.append($tmp);
+        span.appendChild(tmp);
 
-        $span = $tmp;
+        span = tmp;
       });
 
-      $span.text(char);
+      span.textContent = char;
     })
 
-    $tr.append($td);
+    tr.appendChild(td);
   });
 
-  return $tr;
+  return tr;
 }

@@ -1,13 +1,8 @@
-let $btnRunTask;
-let $progress;
 let $table;
-let progressTimer;
 const lines = [];
 let currentLine = 0;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
-  $progress = $('#progress');
   $table = $('#table');
 
   getCSV();

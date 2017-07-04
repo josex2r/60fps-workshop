@@ -1,27 +1,12 @@
-let $btnRunTask;
-let $progress;
 let $table;
-let progressTimer;
 
 $(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
-  $progress = $('#progress');
   $table = $('#table');
 
   renderData();
 
   startTimer();
-
-  startProgressAnimation(5000, startProgressAnimation);
 });
-
-function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
-
-  $progress.animate({
-      width: '100%'
-    }, delay, 'linear', () => callback(delay, callback));
-}
 
 function renderData(lines) {
   new Array(1000).fill(0).map(() =>
