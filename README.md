@@ -1,20 +1,30 @@
 Live example: [https://josex2r.github.io/60fps-workshop/](https://josex2r.github.io/60fps-workshop/)
 
-# Conclusiones
+# Requirements
 
-* evita a las propiedades que hacer repintado DOM, incluso para leer
-* si lo tienes que hacer, procura agrupar las acciones
-* divide y delega el momento de ejecución en el navegador
-* no dividas demasiado
-* no generes delegaciones de ejecución masivas
-* normalmente mejor emplear funciones js nativas que jquery etc, prueba
-* si tienes que elegir, céntrate en lo que realmente está viendo el usuario
-*  necesitarás probablemente combinar diferentes técnicas para conseguir optimizar
+- [git](https://git-scm.com/)
+- [nodeJS](https://nodejs.org/es/)
+- [harp](https://www.npmjs.com/package/harp)
+
+# How to / Installation
+
+Make sure you accomplish the previous requirements and then clone this repo:
+
+`$ git clone https://github.com/josex2r/60fps-workshop.git`
+
+Change to the repo path and install the node packages with `npm` or `yarn`:
+
+`$ npm install`
 
 # Development
 
-`$ harp server`
+Run:
+
+`$ npm server`
+
+Then naviage to [localhost:9000](http://localhost:9000/) to access to the generated website.
 
 # Build production
 
-`$ NODE_ENV="production" harp compile`
+`$ npm build`
+
