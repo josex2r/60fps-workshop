@@ -1,12 +1,12 @@
 let $btnRunTask;
 let $progress;
-let $table;
+let table;
 let progressTimer;
 
 $(document).ready(function() {
   $btnRunTask = $('#btnRunTask');
   $progress = $('#progress');
-  $table = $('#table');
+  table = document.getElementById('table');
 
   bindRunTask();
   startProgressAnimation(5000, startProgressAnimation);
@@ -19,7 +19,7 @@ function bindRunTask() {
 }
 
 function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
+  $progress[0].style.width ='0%';
 
   $progress.animate({
       width: '100%'
@@ -49,11 +49,16 @@ function renderRow(index, rows) {
   const row = rows[index];
 
   window.requestAnimationFrame(() => {
-    const content = row.reduce((acc, column) => {
-      return acc +`<td>${column}</td>`;
-    }, '');
+    const tr = document.createElement('tr');
+    
+    row.forEach((column) => {
+      const td = document.createElement('td');
 
-    $table.append(`<tr>${content}</tr>`);
+      td.innerHTML = column;
+      tr.appendChild(td);
+    });
+
+    table.appendChild(tr);
 
     if (index++ < rows.length -1) {
       renderRow(index, rows);
