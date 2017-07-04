@@ -20,7 +20,7 @@ Change to the repo path and install the node packages with `npm` or `yarn`:
 
 Run:
 
-`$ npm server`
+`$ npm run server`
 
 Then naviage to [localhost:9000](http://localhost:9000/) to access to the generated website.
 
