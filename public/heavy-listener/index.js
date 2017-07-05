@@ -14,10 +14,16 @@ $(document).ready(function() {
   }
 
   $frames = $frame.find('div');
+});
 
+// ===============================
+// ==== Write your code here! ====
+// ===============================
+
+$(document).ready(function() {
   $frame.on('scroll', (e) => {
     const index = getIndex();
-    
+
     colorize(index);
 
     const percent = getPercent();
