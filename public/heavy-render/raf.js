@@ -1,5 +1,4 @@
 let table;
-let progressTimer;
 
 $(document).ready(function() {
   table = document.querySelector('#table tbody');
@@ -9,6 +8,20 @@ $(document).ready(function() {
   startTimer();
 });
 
+function renderRow(items) {
+  const tr = document.createElement('tr');
+
+  items.forEach(item => {
+    const td = document.createElement('td');
+
+    td.textContent = item;
+
+    tr.appendChild(td);
+  });
+
+  return tr;
+}
+
 function renderData(lines) {
   new Array(1000).fill(0).map(() =>
     new Array(5).fill(0).map(Math.random)
@@ -16,6 +29,10 @@ function renderData(lines) {
     table.appendChild(renderRow(items));
   });
 }
+
+// =================================
+// ======= Modify from here! =======
+// =================================
 
 function startTimer() {
   const items = document.querySelectorAll('tr');
@@ -42,16 +59,3 @@ function computeCells(items) {
   };
 }
 
-function renderRow(items) {
-  const tr = document.createElement('tr');
-
-  items.forEach(item => {
-    const td = document.createElement('td');
-
-    td.textContent = item;
-
-    tr.appendChild(td);
-  });
-
-  return tr;
-}

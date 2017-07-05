@@ -1,14 +1,38 @@
-let $table;
+let table;
 const lines = [];
 let currentLine = 0;
 
-$(document).ready(function() {
-  $table = $('#table');
+function renderLine(items) {
+  table.appendChild(renderRow(items));
+}
 
-  getCSV();
+function renderRow(items) {
+  const tr = document.createElement('tr');
 
-  window.addEventListener('scroll', checkScroll);
-});
+  items.forEach(item => {
+    const td = document.createElement('td');
+
+    item.split('').forEach((char) => {
+      let span = document.createElement('span');
+
+      td.appendChild(span);
+
+      new Array(10).fill(0).forEach(() => {
+        const tmp = document.createElement('span');
+
+        span.appendChild(tmp);
+
+        span = tmp;
+      });
+
+      span.textContent = char;
+    })
+
+    tr.appendChild(td);
+  });
+
+  return tr;
+}
 
 function getCSV() {
   $.ajax({
@@ -19,7 +43,7 @@ function getCSV() {
   });
 }
 
-function processData(allText) {
+function parseData(allText) {
   var allTextLines = allText.split(/\r/);
   var headers = allTextLines[0].split(',');
 
@@ -34,48 +58,34 @@ function processData(allText) {
       lines.push(tarr);
     }
   }
+}
+
+// =================================
+// ======= Modify from here! =======
+// =================================
+
+$(document).ready(function() {
+  table = document.querySelector('#table tbody');
+
+  getCSV();
+
+  window.addEventListener('scroll', checkScroll);
+});
+
+function processData(allText) {
+  parseData(allText);
 
   checkScroll();
 }
 
 function checkScroll() {
-  const $wrapper = document.body;
+  const wrapper = document.body;
 
-  if (currentLine < lines.length && document.body.scrollHeight - window.outerHeight - 600 <= $wrapper.scrollTop) {
+  if (currentLine < lines.length &&
+    document.body.scrollHeight - window.outerHeight - 600 <= wrapper.scrollTop) {
     renderLine(lines[currentLine]);
     currentLine++;
     checkScroll();
   }
 }
 
-function renderLine(items) {
-  $table.append(renderRow(items));
-}
-
-function renderRow(items) {
-  const $tr = $('<tr>');
-
-  items.forEach(item => {
-    const $td = $('<td>');
-
-    item.split('').forEach((char) => {
-      let $span = $('<span>');
-
-      $td.append($span);
-
-      new Array(10).fill(0).forEach(() => {
-        const $tmp = $('<span>');
-
-        $span.append($tmp);
-
-        $span = $tmp;
-      });
-
-      $span.text(char);
-    })
-
-    $tr.append($td);
-  });
-
-  return $tr;
-}
