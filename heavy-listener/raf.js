@@ -14,16 +14,20 @@ $(document).ready(function() {
   }
 
   $frames = $frame.find('div');
+});
 
+// ===============================
+// ==== Write your code here! ====
+// ===============================
+
+$(document).ready(function() {
   $frame.on('scroll', (e) => {
     window.requestAnimationFrame(render);
   });
 });
 
 function render() {
-  const bounds = getBounds();
-  const index = bounds.index;
-  const percent = bounds.percent;
+  const { index, percent } = getBounds();
 
   colorize(index);
   resize(percent);
@@ -36,7 +40,7 @@ function resize(percent) {
 function colorize(index) {
   let color = $frames[index].style.backgroundColor;
   
-  $progress[0].style.background =  color;
+  $progress[0].style.background = color;
 }
 
 function getBounds() {
