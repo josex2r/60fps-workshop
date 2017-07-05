@@ -1,12 +1,12 @@
 let $btnRunTask;
 let $progress;
-let table;
+let $tbody;
 let progressTimer;
 
 $(document).ready(function() {
   $btnRunTask = $('#btnRunTask');
   $progress = $('#progress');
-  table = document.getElementById('table');
+  $tbody = $('#table tbody');
 
   bindRunTask();
   startProgressAnimation(5000, startProgressAnimation);
@@ -41,6 +41,10 @@ function processData(text) {
   renderData(lines);
 }
 
+// ===============================
+// ==== Write your code here! ====
+// ===============================
+
 function renderData(lines) {
   renderRow(0, lines);
 }
@@ -58,7 +62,7 @@ function renderRow(index, rows) {
       tr.appendChild(td);
     });
 
-    table.appendChild(tr);
+    $tbody[0].appendChild(tr);
 
     if (index++ < rows.length -1) {
       renderRow(index, rows);

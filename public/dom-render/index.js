@@ -1,12 +1,12 @@
 let $btnRunTask;
 let $progress;
-let $table;
+let $tbody;
 let progressTimer;
 
 $(document).ready(function() {
   $btnRunTask = $('#btnRunTask');
   $progress = $('#progress');
-  $table = $('#table');
+  $tbody = $('#table tbody');
 
   bindRunTask();
   startProgressAnimation(5000, startProgressAnimation);
@@ -19,7 +19,7 @@ function bindRunTask() {
 }
 
 function startProgressAnimation(delay, callback) {
-  $progress.width('0%');
+  $progress[0].style.width ='0%';
 
   $progress.animate({
       width: '100%'
@@ -35,28 +35,19 @@ function getCSV() {
   });
 }
 
-function processData(allText) {
-    var allTextLines = allText.split(/\r/);
-    var headers = allTextLines[0].split(',');
-    var lines = [];
-
-    for (var i=1; i<allTextLines.length; i++) {
-        var data = allTextLines[i].split(',');
-        if (data.length == headers.length) {
-
-            var tarr = [];
-            for (var j=0; j<headers.length; j++) {
-                tarr.push(/* headers[j]+":"+ */ data[j]);
-            }
-            lines.push(tarr);
-        }
-    }
-    renderData(lines);
+function processData(text) {
+  const lines = text.split(/\r/).map(line => line.split(','));
+  
+  renderData(lines);
 }
+
+// ===============================
+// ==== Write your code here! ====
+// ===============================
 
 function renderData(lines) {
   lines.forEach(items => {
-    $table.append(renderRow(items));
+    $tbody.append(renderRow(items));
   });
 }
 
