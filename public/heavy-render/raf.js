@@ -1,4 +1,5 @@
 let table;
+let shouldRefresh = true;
 
 $(document).ready(function() {
   table = document.querySelector('#table tbody');
@@ -6,6 +7,12 @@ $(document).ready(function() {
   renderData();
 
   startTimer();
+
+  window.addEventListener('scroll', () => {
+    if (!shouldRefresh) {
+      shouldRefresh = true;
+    }
+  });
 });
 
 function renderRow(items) {
@@ -41,15 +48,20 @@ function startTimer() {
 }
 
 const outerHeight = window.outerHeight;
+let viewportItems;
 
 function computeCells(items) {
   return () => {
-    const viewportItems = $(items).filter((index, element) => {
-      const rect = element.getBoundingClientRect();
+    if (shouldRefresh) {
+      viewportItems = $(items).filter((index, element) => {
+        const rect = element.getBoundingClientRect();
 
-      return rect.top <= outerHeight + 300 &&
-        rect.bottom >= -1 * 300;
-    });
+        return rect.top <= outerHeight + 300 &&
+          rect.bottom >= -1 * 300;
+      });
+
+      shouldRefresh = false;
+    }
 
     viewportItems.children().each((idx, element) => {
       element.textContent = Math.random();
