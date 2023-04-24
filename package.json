@@ -18,18 +18,22 @@
     "60",
     "fps"
   ],
-  "contributors": [{
-    "name": "josex2r",
-    "email": "codex2r@gmail.com"
-  }, {
-    "name": "adrigzr"
-  }],
+  "contributors": [
+    {
+      "name": "josex2r",
+      "email": "codex2r@gmail.com"
+    },
+    {
+      "name": "adrigzr"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/josex2r/60fps-workshop/issues"
   },
   "homepage": "https://github.com/josex2r/60fps-workshop#readme",
   "devDependencies": {
-    "harp": "^0.24.0"
+    "harp": "^0.46.1",
+    "less": "^4.1.3"
   }
 }
