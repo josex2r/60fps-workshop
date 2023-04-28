@@ -5,9 +5,6 @@ on:
     branches: [master]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
   publish:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master' && github.event_name == 'push'
@@ -18,8 +15,13 @@ jobs:
           ref: gh-pages
           fetch-depth: 0
 
+      - name: Git config
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
       - name: "Merge #master -> #gh-pages"
-        run: git merge origin/main
+        run: git merge origin/master
 
       - name: Install dependencies
         run: npm install
@@ -30,7 +32,5 @@ jobs:
       - name: Publish changes
         run: |
           git add docs
-          git config --global user.email "action@github.com"
-          git config --global user.name "GitHub Action"
           git diff-index --quiet HEAD || git commit -m "docs: update static site"
           git push origin gh-pages

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "NODE_ENV=' ' harp server",
-    "build": "NODE_ENV=https://josex2r.github.io/60fps-workshop harp ./server ./build"
+    "build": "NODE_ENV=https://josex2r.github.io/60fps-workshop harp ./server ./docs"
   },
   "repository": {
     "type": "git",
