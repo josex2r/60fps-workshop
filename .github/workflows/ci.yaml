@@ -1,0 +1,36 @@
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+  publish:
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master' && github.event_name == 'push'
+
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: gh-pages
+          fetch-depth: 0
+
+      - name: "Merge #master -> #gh-pages"
+        run: git merge origin/main
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build site
+        run: npm run build
+
+      - name: Publish changes
+        run: |
+          git add docs
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+          git diff-index --quiet HEAD || git commit -m "docs: update static site"
+          git push origin gh-pages
