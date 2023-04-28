@@ -1,0 +1,22 @@
+.container
+  .row.pb-2
+    h1 Update huge table
+
+  .row.pb-2
+    p Render 1000x20 table cells and update each cell with a random number each millisecond.
+
+  .row.pb-2
+    .col
+      a#btnRunTask.btn.btn-primary(href="#{environment}/viewport/raf") Go to optimization
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/update-table.png")
+
+  .row.pb-2
+    table#table.table.table-striped.table-responsive
+      tbody
+
+!=partial('../_shared/spinner')
+
+script(src="#{environment}/viewport/index.js")

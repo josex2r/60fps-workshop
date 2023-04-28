@@ -1,0 +1,41 @@
+.container
+  .row.pb-2
+    h1 Scroll listeners
+
+  .row.pb-2
+    p "Scroll" event is attached to the scrollable container.
+    p Each time an scroll event is triggered, the scroll position is checked and if the user has scrolled to the bottom of the container then 1 row is appended to the DOM, and the scroll position is checked again in a recursive way.
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/listeners-1.png")
+
+  .row.pb-2.scrollable-container
+    table#table.table.table-striped.table-responsive
+      tbody
+
+.container.pt-4
+  .row.pb-2
+    h1 Intersection observer
+
+  .row.pb-2
+    p An "Intersection Observer" is attached to the scrollable container and a "sentinel" (empty element) is placed on the bottom of the container.
+    p Each time the sentinel enters in the viewport, multiple rows are inserted to the document until the sentinel leaves the viewport.
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/listeners-2.png")
+
+  .row.pb-2
+    .progress
+      div#progress.progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' style='width: 0%')
+
+  .row.pb-2.scrollable-container
+    table#table2.table.table-striped.table-responsive
+      tbody
+    div#sentinel(style="height:200px")
+
+!=partial('../_shared/spinner')
+
+script(src="#{environment}/listeners/index.js")
+script(src="#{environment}/listeners/raf.js")

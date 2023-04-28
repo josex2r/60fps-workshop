@@ -1,0 +1,16 @@
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(href='#{environment}/') Home
+        li.nav-item
+          a.nav-link(href='#{environment}/render') 01 - Render
+        li.nav-item
+          a.nav-link(href="#{environment}/dom-render") 02 - DOM render
+        li.nav-item
+          a.nav-link(href="#{environment}/listeners") 03 - Listeners
+        li.nav-item
+          a.nav-link(href="#{environment}/viewport") 04 - Viewport

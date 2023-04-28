@@ -1,0 +1,48 @@
+.container
+  .row.pb-2
+    h1 DOM Rendering
+
+  .row.pb-2
+    p Render 2000x20 table cells in a single operation.
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/dom-single.png")
+
+  .row.pb-2
+    .col
+      button#btnRunTask.btn.btn-primary Make some heavy task
+
+  .row.pb-2
+    .progress
+      .progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%')
+
+  .row.pb-2.scrollable-container
+    table#table.table.table-striped.table-responsive
+      tbody
+
+.container.pt-4
+  .row.pb-2
+    h1 Delayed render
+
+  .row.pb-2
+    p Render 2000x20 table cells in groups of 5 rows.
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/dom-multiple.png")
+
+  .row.pb-2
+    .col
+      button#btnRunTask2.btn.btn-primary Render in groups
+
+  .row.pb-2
+    .progress
+      div#progress.progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' style='width: 0%')
+
+  .row.pb-2.scrollable-container
+    table#table2.table.table-striped.table-responsive
+      tbody
+
+script(src="#{environment}/dom-render/index.js")
+script(src="#{environment}/dom-render/raf.js")

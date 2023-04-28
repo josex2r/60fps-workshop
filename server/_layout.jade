@@ -1,0 +1,12 @@
+doctype
+html
+  head
+    link(rel="stylesheet" href="#{environment}/assets/css/bootstrap.min.css")
+    link(rel="stylesheet" href="#{environment}/assets/css/main.css")
+    script(src="#{environment}/assets/js/bootstrap.min.js")
+    script(src="#{environment}/assets/js/common.js")
+  body
+    !=partial('/_shared/nav')
+
+    .container.pt-5
+      != yield

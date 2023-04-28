@@ -1,0 +1,41 @@
+body {
+  font-family: "Helvetica";
+  text-align: left;
+  padding-bottom: 30px;
+  background: #f4f4f7;
+  color: #444;
+  margin: 0;
+}
+
+img {
+  max-width: 100%;
+}
+
+.scrollable-container {
+  height: 300px;
+  overflow: scroll;
+}
+
+.spinner {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  overflow: visible;
+  position: fixed;
+  top: calc(0% + 50px);
+  right: calc(0% + 50px);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 50px;
+}
+
+.spinner > circle {
+  fill: none;
+  stroke: currentColor;
+  cx: 50%;
+  cy: 50%;
+  r: 50%;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  transform-origin: center;
+}
