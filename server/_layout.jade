@@ -2,14 +2,11 @@ doctype
 html
   head
     link(rel="stylesheet" href="#{environment}/assets/css/bootstrap.min.css")
-    link(rel="stylesheet" href="#{environment}/assets/css/bootstrap-theme.min.css")
     link(rel="stylesheet" href="#{environment}/assets/css/main.css")
-    link(rel="stylesheet" href="#{environment}/assets/css/ie10-viewport-workaround.css")
-    script(src="#{environment}/assets/js/jquery.min.js")
     script(src="#{environment}/assets/js/bootstrap.min.js")
-    script(src="#{environment}/assets/js/ie10-viewport-workaround.js")
+    script(src="#{environment}/assets/js/common.js")
   body
     !=partial('/_shared/nav')
-    .container
+
+    .container.pt-5
       != yield
-    script(src="#{environment}/assets/js/nav.js")

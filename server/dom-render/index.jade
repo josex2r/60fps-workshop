@@ -1,13 +1,48 @@
-a.btn.btn-primary.pull-right(href="#{environment}/dom-render/raf") Ir a la solución
+.container
+  .row.pb-2
+    h1 DOM Rendering
 
-.page-header
-  h1 Heavy DOM operation
+  .row.pb-2
+    p Render 2000x20 table cells in a single operation.
 
-.row
-  p En este ejemplo se puede observar cómo al renderizar una gran cantidad de elementos en el DOM <b>bloqueamos el hilo principal</b> del navegador.
-  p Para ello se leerá una csv con miles de datos que renderizaremos en una tabla.
-  p Una posible solución sería renderizar <b>1..n</b> elementos  a la vez, en vez del total de ellos. Para solucionarlo se hará uso de la función nativa <b>requestAnimationFrame</b>.
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/dom-single.png")
 
-!=partial('../_shared/dom-render', { img: 'dom-render-before.png' })
+  .row.pb-2
+    .col
+      button#btnRunTask.btn.btn-primary Make some heavy task
+
+  .row.pb-2
+    .progress
+      .progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width: 100%')
+
+  .row.pb-2.scrollable-container
+    table#table.table.table-striped.table-responsive
+      tbody
+
+.container.pt-4
+  .row.pb-2
+    h1 Delayed render
+
+  .row.pb-2
+    p Render 2000x20 table cells in groups of 5 rows.
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/dom-multiple.png")
+
+  .row.pb-2
+    .col
+      button#btnRunTask2.btn.btn-primary Render in groups
+
+  .row.pb-2
+    .progress
+      div#progress.progress-bar.progress-bar-striped.progress-bar-animated(role='progressbar' style='width: 0%')
+
+  .row.pb-2.scrollable-container
+    table#table2.table.table-striped.table-responsive
+      tbody
 
 script(src="#{environment}/dom-render/index.js")
+script(src="#{environment}/dom-render/raf.js")

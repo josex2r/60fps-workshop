@@ -1,0 +1,22 @@
+.container
+  .row.pb-2
+    h1 Update viewport
+
+  .row.pb-2
+    p Render 1000x20 table cells and update each cell that is inside the viewport with a random number each millisecond.
+
+  .row.pb-2
+    .col
+      a#btnRunTask.btn.btn-primary(href="#{environment}/viewport") Go to example
+
+  .row.pb-2
+    .col
+      img(src="#{environment}/assets/img/update-viewport.png")
+
+  .row.pb-2
+    table#table.table.table-striped.table-responsive
+      tbody
+
+!=partial('../_shared/spinner')
+
+script(src="#{environment}/viewport/raf.js")

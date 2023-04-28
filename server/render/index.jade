@@ -1,0 +1,19 @@
+.row.pb-2
+  h1 Render elements in DOM
+
+.row.pb-2
+  .col
+    img(src="#{environment}/assets/img/render-perf.png")
+
+.row.pb-2
+  .col
+    p Click the next button to render a row with multiple numbers as columns insible an HTML table.
+    p Once you record this click interaction you should be able to see a Task that calls the function `renderData`, wich triggers all the rendering phases of the browser.
+
+    button#btnRunTask.btn.btn-primary Render rows 1by1
+
+.row.pb-2
+  table#table.table.table-responsive
+    tbody
+
+script(src="#{environment}/render/index.js")

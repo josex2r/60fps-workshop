@@ -1,71 +1,41 @@
-let $btnRunTask;
-let $progress;
-let $tbody;
-let progressTimer;
+const tableDataDelayed = generateTable(2000, 20);
 
-$(document).ready(function() {
-  $btnRunTask = $('#btnRunTask');
-  $progress = $('#progress');
-  $tbody = $('#table tbody');
+window.addEventListener("DOMContentLoaded", () => {
+  const btnRunTask = document.querySelector("#btnRunTask2");
+  const table = document.querySelector("#table2 > tbody");
+  const progress = document.querySelector("#progress");
+  const updateProgressFn = updateProgress.bind(
+    null,
+    progress,
+    tableDataDelayed.length
+  );
+  const renderDataDelayedFn = renderDataDelayed.bind(
+    null,
+    table,
+    tableDataDelayed,
+    updateProgressFn
+  );
 
-  bindRunTask();
-  startProgressAnimation(5000, startProgressAnimation);
+  btnRunTask.addEventListener("click", () =>
+    renderDataDelayedFn(0, renderDataDelayedFn)
+  );
 });
 
-function bindRunTask() {
-  $btnRunTask.click(() => {
-    getCSV();
-  });
-}
+function renderDataDelayed(table, data, updateProgress, index, cb) {
+  if (index >= data.length) return;
 
-function startProgressAnimation(delay, callback) {
-  $progress[0].style.width ='0%';
-
-  $progress.animate({
-      width: '100%'
-    }, delay, 'linear', () => callback(delay, callback));
-}
-
-function getCSV() {
-  $.ajax({
-    type: 'GET',
-    url: 'https://josex2r.github.io/60fps-workshop/assets/example.csv',
-    dataType: 'text',
-    success: processData
-  });
-}
-
-function processData(text) {
-  const lines = text.split(/\r/).map(line => line.split(','));
-
-  renderData(lines);
-}
-
-// ===============================
-// ==== Write your code here! ====
-// ===============================
-
-function renderData(lines) {
-  renderRow(0, lines);
-}
-
-function renderRow(index, rows) {
-  const row = rows[index];
+  const size = 5;
+  const lastIndex = index + size;
+  const rowData = data.slice(index, lastIndex);
 
   window.requestAnimationFrame(() => {
-    const tr = document.createElement('tr');
-    
-    row.forEach((column) => {
-      const td = document.createElement('td');
+    rowData.forEach((row) => table.appendChild(renderRow(row)));
 
-      td.innerHTML = column;
-      tr.appendChild(td);
-    });
-
-    $tbody[0].appendChild(tr);
-
-    if (index++ < rows.length -1) {
-      renderRow(index, rows);
-    }
+    updateProgress(index + size);
+    cb(lastIndex, cb);
   });
+}
+
+function updateProgress(progress, total, current) {
+  progress.style.width = `${(current * 100) / total}%`;
 }

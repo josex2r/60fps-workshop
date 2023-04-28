@@ -1,23 +1,16 @@
-nav.navbar.navbar-inverse.navbar-fixed-top
-  .container
-    .navbar-header
-      button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#navbar", aria-expanded="false", aria-controls="navbar")
-        span.sr-only Toggle navigation
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href="#{environment}/") #{ title }
-    #navbar.navbar-collapse.collapse(aria-expanded="false", style="height: 1px;")
-      ul.nav.navbar-nav
-        li
-          a(href="#{environment}/") Home
-        li
-          a(href="#{environment}/heavy-listener") 01 - Heavy listener
-        li
-          a(href="#{environment}/dom-render") 02 - DOM render
-        li
-          a(href="#{environment}/scroll-load") 03 - Scroll load
-        li
-          a(href="#{environment}/heavy-render") 04 - Heavy rendering
-        li
-          a(href="#{environment}/conclusions") Conclusiones
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  .container-fluid
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      ul.navbar-nav.me-auto.mb-2.mb-lg-0
+        li.nav-item
+          a.nav-link.active(href='#{environment}/') Home
+        li.nav-item
+          a.nav-link(href='#{environment}/render') 01 - Render
+        li.nav-item
+          a.nav-link(href="#{environment}/dom-render") 02 - DOM render
+        li.nav-item
+          a.nav-link(href="#{environment}/listeners") 03 - Listeners
+        li.nav-item
+          a.nav-link(href="#{environment}/viewport") 04 - Viewport

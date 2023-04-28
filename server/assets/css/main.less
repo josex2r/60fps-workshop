@@ -1,53 +1,41 @@
-body{
+body {
   font-family: "Helvetica";
-  text-align: center;
-  padding-top: 70px;
+  text-align: left;
   padding-bottom: 30px;
   background: #f4f4f7;
   color: #444;
   margin: 0;
 }
 
-.theme-dropdown .dropdown-menu {
-  position: static;
-  display: block;
-  margin-bottom: 20px;
+img {
+  max-width: 100%;
 }
 
-.theme-showcase > p > .btn {
-  margin: 5px 0;
+.scrollable-container {
+  height: 300px;
+  overflow: scroll;
 }
 
-.theme-showcase .navbar .container {
-  width: auto;
+.spinner {
+  box-sizing: border-box;
+  width: 100px;
+  height: 100px;
+  overflow: visible;
+  position: fixed;
+  top: calc(0% + 50px);
+  right: calc(0% + 50px);
+  background: rgba(255, 255, 255, 0.7);
+  padding: 15px;
+  border-radius: 50px;
 }
 
-#progress {
-  transition: none;
-  -webkit-transition: none;
+.spinner > circle {
+  fill: none;
+  stroke: currentColor;
+  cx: 50%;
+  cy: 50%;
+  r: 50%;
+  stroke-width: 6px;
+  stroke-linecap: round;
+  transform-origin: center;
 }
-
-#frame {
-  overflow-y: hidden;
-  overflow-x: scroll;
-  position: absolute;
-  width: 100%;
-  height: 150px;
-}
-
-#frame > div {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0%;
-}
-
-@iterations: 200;
-.loopingClass (@index) when (@index > 0) {
-  #frame > div:nth-child(@{index}) {
-    left: percentage(@index);
-  }
-  .loopingClass(@index - 1);
-}
-.loopingClass (0) {}
-.loopingClass (@iterations);
