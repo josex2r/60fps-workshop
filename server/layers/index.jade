@@ -1,0 +1,34 @@
+.row.pb-2
+  h1 Animate elements using layers
+
+.row.pb-2
+  .col
+    img(src="#{environment}/assets/img/layers-left.png")
+
+.row.pb-2
+  .col
+    p Click the next button to animate the box using the `left` property.
+
+    button#btnLeft.btn.btn-primary Animate
+
+div.row.pb-5
+  div#boxLeft
+
+.row.pb-2
+  .col
+    img(src="#{environment}/assets/img/layers-translate.png")
+
+.row.pb-2
+  .col
+    img(src="#{environment}/assets/img/layers.png")
+
+.row.pb-2
+  .col
+    p Click the next button to animate the box using the `left` property and promoting element to a new layer.
+
+    button#btnTraslate.btn.btn-primary Animate
+
+div.row.pb-2
+  div#boxTraslate
+
+script(src="#{environment}/layers/index.js")

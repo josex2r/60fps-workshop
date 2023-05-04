@@ -39,3 +39,36 @@ img {
   stroke-linecap: round;
   transform-origin: center;
 }
+
+#boxLeft,
+#boxTraslate {
+  width: 100px;
+  height: 100px;
+  background: red;
+}
+
+.animate-left {
+  position: relative;
+  animation-duration: 5s;
+  animation-name: slide-left;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+@keyframes slide-left {
+  from {
+    left: 0;
+  }
+  to {
+    left: 500px;
+  }
+}
+
+.animate-traslate {
+  will-change: left;
+  transform: translateZ(0);
+  position: relative;
+  animation-duration: 5s;
+  animation-name: slide-left;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
